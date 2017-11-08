@@ -355,7 +355,7 @@ document.head.appendChild(script);
 !function(){console.log('哈哈哈')}
 
 
-//要加载音频，不用play()，用load()就好了嘛
+//要加载音频，不用play()，用load()
 
 //1、canvas绘图，img需要onload才能drawImg
 //2、hash数组，length永远为0
