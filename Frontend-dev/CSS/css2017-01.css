@@ -183,3 +183,9 @@ input::-moz-placeholder{
 }
 
 /*text-overflow: ellipsis;*/
+
+
+/* web打印一样要这样才会有样式：*/
+@media print {
+	
+}
