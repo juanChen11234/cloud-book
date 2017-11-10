@@ -453,5 +453,3 @@ ng的变化发现机制
 
 
 	
-【注意点】
-1、用[(ngModel)]命令需要跟模块中import:{FormsModule}模块
