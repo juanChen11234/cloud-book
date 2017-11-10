@@ -17,6 +17,18 @@
 2、据说：所有的组件、指令或管道都必须依附于某个模块，并只在此模块中可用。
 
 
+【关于路由】
+1、子路由怎么了？
+2、this.router.navigateByUrl ()方法指向完整的绝对路径
+3、路由配置里面：children下的redirectTo居然不用加./开头
+4、子路由用this.router.navigate(['./b'])居然跳转不了，
+但是用属性[routerLink]='./b'可以
+
+
+【关于响应式表单】
+1、用在radio上，一定要加上value属性
+<input type="radio" formControlName="gender" value="女">女
+<input type="radio" formControlName="gender" value="男">男
 
 【模块架构】
 >1.根模块负责全局的路由。
