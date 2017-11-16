@@ -1,0 +1,233 @@
+《typescript 入门》
+
+ 基于类的面向对象编程
+
+优点
+安装typescript的开发环境
+概念，语法，特性
+
+
+优势：
+	支持ES6规范，
+	强大的Ide支持（类型检查，语法提示，重构）
+	Angular2的开发语言
+
+搭建ts开发环境：
+	compiler:把ts转化为es5
+	在线compiler:官网的playground
+	本地compiler开发：
+		安装ts编译器 cnpm install -g typescript
+
+---------------------新特性---->
+字符串新特性：
+	多行字符串 ``
+	字符串模板 ${myName} ${getName()}
+	自动拆分字符串 fn`hello${m},yes${n}` (fn是一个function)
+参数类型新特性：
+	参数类型 var myname:string="chenjuan"; 提醒只会在编辑器展示出来
+	类型推断机制 根据第一次给变量赋值默认类型
+	var alias:any="13"; //就是想要可以多种类型
+	function test():void{} 表明方法不需要任何返回值。
+	function test():string{} 表明方法返回string类型
+	function test(name:string):void{} 需要用字符串来调用方法
+	自定义类型：
+		class Person{name:string,age:number}
+		var zhangshan:Person=new Person();
+参数默认值新特性：
+	var myname:string="zhangsan";
+	function test(a:string,b:number=12){//...}
+		没有指定默认值的时候，参数个数不对会报错。
+	注意：带默认值的参数一定要声明在后面。
+可选参数新特性：
+	function test(a:string,b?:string,c:number=20){}
+	可选参数必须声明在必选参数的后面
+
+函数新特性>
+Rest 和 Spread操作符：
+	用来声明任意数量的方法参数
+	function fn(...args){}//args会是一个数组，可以用任意个数的参数调用fn
+	function fn(a,b,c){}; var args=[1,2];fn(...args);//无论用多少个参数调用，参数个数固定
+generator函数：
+	控制函数的执行过程，手工暂停和恢复代码执行。
+	function* doSomething(){
+		console.log("start");
+		yield;
+		console.log("finish");
+	}
+	var fn=doSomething();//直接调用doSomething函数什么都不做。
+	fn.next();//  每调用一个next就执行到一个yield停止
+	fn.next();
+destructuring析构表达式：
+	通过表达式将对象或数字拆解成任意数量的变量	
+	//从对象中取值?
+	function getStock(){
+		return {
+			code:"IMB",
+			price:100
+		}
+	}
+	//目标：把调用得到的对象赋值给本地的两个变量
+	var {code,price}=getStock();//要求变量名相等
+	var {code:codex,price}=getStock();//更改变量名
+	//如果price是一个对象price:{p1:200,p2:400}
+	//那么怎么取嵌套的属性值
+	var {code,price:{p2}}=getStock();//price就获取了price.p2的值。
+	//如何从数组中取值：?
+	var arr1=[1,2,3,4];
+	var [num1,num2]=arr1;//1,2
+	var [,,num3,num4]=arr1;//3,4
+	//结合Rest操作符？
+	var [n1,..others]=arr1;
+	//把析构表达式用在方法的参数上？
+	function fn([arg1,arg2,...others]){}
+箭头表达式新特性：
+	用来声明匿名函数，消除传统匿名函数中this指针的问题
+	//匿名函数应用
+	var sum=(arg1,arg2)=>arg1+arg2;//返回两个数相加。只有一行可以省略{}和return
+	var fn=()=>console.log('123');//无参数
+	var fn=arg1=>console.log(arg1);//只有一个参数
+	var arr=[1,2,3,4,5];
+	console.log(arr.filter(value=>value%2==0));//[2,4]
+	//消除this
+	function fn(name:string){
+		this.name=name;
+		setTimeout(()=>console.log(`name is ${this.name}`),1000);
+	}
+	fn("IBM");
+循环新的语法：
+	forEach(),for in 与 for of
+	var arr=[1,2,3,4];
+	arr.desc="four number";//IDE会报错，js执行没错。
+	老的forEach循环数组会忽略数组的属性arr.desc，不能break
+	老的for( var key in arr){}循环的是属性的名字
+	for of循环的是数组或者对象的值，可以break,会忽略属性的值
+	for(var val of arr){
+		if(n>2){break;}
+		console.log(val);
+	}
+	var str="number";
+	for(var n of str){console.log(n);}//会打印每个字符
+
+面向对象高级特性--：
+TypeScript类：
+	类的定义：
+		class 类名{
+			//类的内部
+			//访问控制符：
+			//public 默认的，内部和外部都可以访问
+			//private 只有类的内部可以访问,类名后面的{}内
+			//protected 只能在类的内部和类的子类访问
+			private name;//类的属性
+
+			eat(){//类的方法
+				console.log(" i am eatting");
+			}
+		} 
+	类的实例化：//类的外部 var p1=new 类名();p1.name="chen";
+	类的构造函数：类里面特殊的方法。
+		这个方法只有在类每次被实例化的时候会被调用，而且只调用一次。
+		外部不能访问这个方法。
+		构造函数声明了，就不用之前另外写个属性。
+		constructor(pubic name:string){//创建name属性，这儿需要明确声明访问控制符
+			this.name;//这样写之后，实例化的时候一定要new 类名('juan');
+			console.log('haha')
+		}
+		//如果构造函数没有明确声明访问控制符，前面属性声明就不能省略。
+	继承：extends继承 super用来调用父类的构造函数或者方法
+		class 子类名 extends 父类名{
+			//子类就会继承父类所有的属性和方法
+
+			//子类可以声明新的属性和方法
+			code:string; 
+
+			//
+			constructor(name:string,code:number){
+				//super用法1
+				super(name);//规定子类的构造函数一定要调用父类的构造函数
+				this.code=code;
+			}
+			work(){
+				//super用法2
+				super.eat();
+				this.dowork();
+			}
+			private dowork(){
+				//private 这个方法只能在类的内部调用，
+				//外部要work就一定要work(),就实现了一定要先吃饭再干活。
+				//哈哈
+				console.log('开始工作');
+			}
+		}
+泛型：限制集合的类型
+	var workers:Array<Person>=[];//规定了数组里只能放Person
+	workers[0]=new Person();
+	workers[1]=new Student();//Student是Person的子类，可以
+	workers[2]=123;//不行！！！
+接口：
+	用来建立某种代码约定，使得其他开发者在调用某个方法或者创建新的
+	+类时必须遵循接口所定义的代码约定。
+	interface:用来声明一个接口
+	implements:声明某个类实现了某一个接口
+	//使用方式1：作为一个方法的参数的类型声明
+	interface IPerson{
+		name:string;
+		age:number;
+	}
+	class Person{
+		constructor(public config:Iperson){
+			
+		}
+	}
+	var chenjuan=new Person();//报错
+	var chenjuan=new Person({name:"juan",age:"18"});//只有这样才不会报错
+	//使用方法2：声明方法
+	interface Animal{
+		eat();
+	}
+	class Sheep implemnets Animal{
+		//绵阳这个类实现了Animal接口，
+		//就是一定要实现接口中声明的方法
+		//这里没有声明eat会报错。
+		eat(){
+			console.log("我吃草");
+		}
+	}
+模块：将代码分割为可重用的单元，开发者可以决定将模块中的哪些资源（类，方法，变量）暴露出去
+	+供外部使用，哪些资源只在模块内部使用。
+	模块在TypeScipt就是文件，一个文件就是一个模块，没有特殊的关键字。
+	两个重要的关键字：export import。
+	//至少两个文件演示
+	a.ts->
+		export var prop1;//属性
+		var porp2;
+		export function func1(){}//方法
+		function func2(){}
+		export class Cla1{}//类
+		class Cla2{}
+	b.ts->
+		import {porp1，func1} from "./a"//只能引入别的模块中暴露的东西
+		console.log(prop1);
+注解：
+	注解为程序的元素（类，方法，变量）加上更直观的说明，这些说明信息与
+	+程序的业务逻辑无关，而只是供指定的工具或框架使用的。
+	import {Component} from "@angular/core"
+	@Component({
+		selector:"app-root"
+	})
+	export class AppComp{
+		title="hello"
+	}
+类型定义文概念：
+	如何在ts中用到jq之类的。
+	类型定义文件都是*.d.ts结尾的
+	function fn2(){
+		$("xx").hide();//ts不知$是什么
+	}
+	主要代码：*.d.ts中的其中一句：declare module "jquery"{export =$}
+	几乎所有的javascript类型定义文件都可以从github项目DefinitelyTyped中找到
+	github中的typings工具可以安装类型定义文件。
+
+
+
+
+	

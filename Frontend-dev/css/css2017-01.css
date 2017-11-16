@@ -1,0 +1,191 @@
+@charset "UTF-8";
+/* 
+google的什么prevent default问题;
+手机上点击图片会有个遮罩;
+文件上传input 的美化;
+tranform 除了webkit，以后要加ms;
+浮动元素无法设置height:100%;
+图片不论宽高比例适应父容器;
+和预加载配合的css和html;
+关于媒体查询;
+swiper的fade效果；
+*/
+
+/* 
+	1、tranform 除了webkit，以后要加ms
+	-ms-transform:; //ie9 
+	2、为什么浮动元素无法设置height:100%？
+	因为浮动元素已经脱离了布局，所以就没办法设置相对于父元素的高度。
+	可以用js解决。
+	3、bootstrap的轮播别忘了加active
+	4、background可以覆盖掉backgorund-size。所以注意先后顺序
+	5、写通用的css，比如行高200%,类名不要写'line-height-20',写'line-height-mini'之类的
+		举一反三:btn-mini btn-xs btn-sm btn-lg btn-md 
+*/
+
+
+
+/* google的什么prevent default问题 */
+* {
+    touch-action: none;
+}
+
+
+/* 手机上点击图片会有个遮罩 */
+body{
+    -webkit-tap-highlight-color:transparent;
+}
+
+
+
+/* 
+	文件上传input 的美化 
+	<a href="javascript:void(0);" class="xx">
+		<span class="btn_dark">更改图片</span>
+		<input type="file" value="更改图片">
+	</a>
+*/
+a.xx  {
+    position: relative;
+    width: 100px;
+    height: 25px;
+    display: block;
+}
+a.xx>span {
+    position: absolute;
+    z-index: 0;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    cursor: pointer;
+    line-height: 25px;
+}
+a.xx>[type="file"] {
+    opacity: 0;
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+
+/* 图片比例不确定，父容器宽高确定 */
+img{
+	position: absolute;
+    max-height:100%;
+    max-width:100%;
+    height:auto;
+    width:auto;
+    left:50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+    -webkit-transform:translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+}
+
+/* 
+	和预加载配合的css和html
+	<div class="loading" id="loading">
+		<p class="pic rolling "><img src="imgs/loading.png" alt=""></p>
+		<p class="progress"></p>
+	</div>
+*/
+.loading{
+    position: fixed;
+    left:0;
+    top:0;
+    right:0;
+    bottom:0;
+    z-index:999;
+    background: #000;
+    color:#fff;
+}
+.loading .progress{
+    text-align: center;
+    margin-top:30px;
+    font-size: 16px;
+}
+.loading .pic{
+    width:10%;
+    margin:0 auto;
+    margin-top:130px;
+}
+
+
+/*
+	关于媒体查询，用max-width要从宽到窄。max-width,表示0-376px
+*/
+@media screen and (max-width:376px) {
+    
+}
+@media screen and (max-width:321px) {
+    
+}
+
+
+
+/*swiper的fade效果*/
+.swiper-container-fade .swiper-slide{
+    z-index:-1;
+    opacity: 0!important;
+}
+.swiper-container-fade .swiper-slide.swiper-slide-active{
+    z-index:10;
+    opacity: 1!important;
+}
+
+/*改变placeholder*/
+input::-webkit-input-placeholder{ 
+	font-size:10px;
+	transform: scale(0.85);
+	-ms-transform: scale(0.85);
+	-webkit-transform: scale(0.85);
+	margin-left:-8%;
+} 
+input:-moz-placeholder{ 
+	font-size:10px;
+	transform: scale(0.85);
+	-ms-transform: scale(0.85);
+	-webkit-transform: scale(0.85);
+	margin-left:-8%;
+} 
+input::-moz-placeholder{ 
+	font-size:10px;
+	transform: scale(0.85);
+	-ms-transform: scale(0.85);
+	-webkit-transform: scale(0.85);
+	margin-left:-8%;
+} 
+
+/*直接写在html中
+<!--[if IE 6]>
+	<style>#export_p_stories_list .custom_btn{display:inline;}</style>
+<![endif]-->
+*/
+
+
+/*<link rel="stylesheet" media="all and (orientation:portrait)" href="竖屏的css">*/
+/*<link rel="stylesheet" media="all and (orientation:landscape)" href="横屏的css">*/
+
+/*opacity的兼容*/
+.opacity{
+	opacity:0.5;
+	-webkit-opacity: 0.5;
+	-moz-opacity: 0.5;
+	-khtml-opacity: 0.5;
+	filter:alpha(opacity=50);
+	filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+}
+
+/*text-overflow: ellipsis;*/
+
+
+/* web打印一样要这样才会有样式：*/
+@media print {
+	
+}

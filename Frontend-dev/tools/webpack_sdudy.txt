@@ -1,0 +1,198 @@
+1、全局安装 cnpm install webpack -g
+2、本地安装，cnpm install webpack --save-dev
+3、安装Loader :cnpm install url-loader css-loader style-loder --save-dev 等
+4、配置webpack.config.js   这个名字不是必须的，可以在package.json的script中修改，比如：
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack": "webpack  --config webpack.config.js   --progress  --colors"
+  },
+  然后运行用：npm run webpack
+
+  5、特别提示：
+  	path: __dirname+'/dist'
+
+6、
+npmjs.com可以看到Loader的说明。
+ 处理css兼容性：cnpm install --save-dev postcss-loader autoprefixer
+ 很有用：html-webpack-plugin
+ 处理bable:看babel官网
+
+7、处理模板文件：
+cnmp install html-loader --save-dev
+
+8、处理图片文件
+	file-loader url-loader image-webpack-loader
+
+9、需要安装的：
+ $ cnpm install html-webpack-plugin jsx-loader  style-loader css-loader postcss-loader
+file-loader html-loader autoprefixer webpack babel-loader less-loader
+image-webpack-loader --save-dev
+
+$ cnpm install babel-core babel-preset-latest --save-dev
+$ cnpm install less --save-dev
+
+
+
+  【示例1：】
+ var webpack = require('webpack');
+ //插件
+ var htmlWebpackPlugin=require('html-webpack-plugin');
+ //var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('common.js');
+
+
+//多页面应用多次new htmlWebpackPlugin
+module.exports = {
+	//运行环境的上下文
+	//context:,
+	plugins:[
+		new htmlWebpackPlugin({
+			filename:"index.html",
+			template:'index.html',
+			//inject:false,
+			title:"欢迎光临index",
+			date:new Date(),
+			//删除html的注释、空格等
+			minify:{
+				removeComments:true	,
+				collapseWhitespace:true
+			},
+			inject:"body",
+			chunks:["main","a"]
+		}),
+		new htmlWebpackPlugin({
+			filename:"about.html",
+			template:'about.html',
+			//inject:false,
+			title:"关于我们",
+			inject:"body",
+			//chunks:["a"]
+			excludeChunks:["main"]
+			//还可以直接script嵌入而不是用src
+		})
+	],
+    //页面入口文件配置
+    entry: {
+        main : './src/script/main.js',
+		a:"./src/script/a.js"
+    },
+    //入口文件输出配置
+    output: {
+        path: __dirname+'/dist',
+        filename: 'js/[name]-[hash].js'
+		//需要上线的时候
+		//publicPath:'http://cdn.com/'
+    },
+    module: {
+        //加载器配置
+        loaders: [
+            { test: /\.css$/, loader: 'style-loader!css-loader' },
+            { test: /\.js$/, loader: 'jsx-loader?harmony' },
+            { test: /\.scss$/, loader: 'style!css!sass?sourceMap'},
+            { test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192'}
+        ]
+    }
+};
+
+示例2：
+
+var webpack = require('webpack');
+var path = require('path');
+ //插件
+ var htmlWebpackPlugin=require('html-webpack-plugin');
+ //var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('common.js');
+
+
+//多页面应用多次new htmlWebpackPlugin
+module.exports = {
+	plugins:[
+		new htmlWebpackPlugin({
+			filename:"index.html",
+			template:'app.html',
+			title:"首页",
+			minify:{
+				removeComments:true
+				//collapseWhitespace:true
+			},
+			//inject:false,
+			inject:"body"
+			//chunks:["main"]
+		})
+	],
+    //页面入口文件配置
+    entry: {
+        main : './src/app.js'
+    },
+    //入口文件输出配置
+    output: {
+        path: __dirname+'/dist',
+        filename: 'js/[name].bundle.js'
+		//需要上线的时候
+		//publicPath:'http://cdn.com/'
+    },
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use:[
+                    {loader:'style-loader'},
+                    {loader:'css-loader',options:{
+                        importLoaders: 1
+                    }},
+                    //自动给需要兼容的css加前缀
+                    {loader:'postcss-loader'}
+                ]
+            },
+            {  test: /\.js$/,
+                exclude:path.resolve(__dirname,'node_modules'),
+                //include:path.resolve(__dirname,'src'),
+                loader: 'babel-loader' ,//npm install
+                query:{
+                    presets:['latest'] //npm install --save-dev babel-preset-latest
+                }
+            },
+            {
+                test: /\.less$/,
+                use:[
+                    {loader:"style-loader"},
+                    {loader:"css-loader",options:{
+                        importLoaders: 1
+                    }},
+                    {loader:"postcss-loader"},
+                    {loader:"less-loader"}
+
+                ]
+            },
+            {
+                test:/\.html$/,
+                use:[
+                    {loader:"html-loader"}
+                ]
+            },
+            {
+                test: /\.(png|jpg|gif|svg)$/,
+                use: [
+                    {loader:"file-loader",query:{ name:'assets/[name].[ext]'}},//改变图片的输出路径
+                    //{loader:"url-loader",options:{limit:8192}}
+                    {loader:"image-webpack-loader"}
+                ]
+
+
+            }
+        ]
+
+    }
+};
+
+postcss.config.js
+/**
+ * Created by Tom on 2017/6/18.
+ */
+module.exports = {
+
+    plugins: {
+
+        'autoprefixer': {}
+
+    }
+
+};
