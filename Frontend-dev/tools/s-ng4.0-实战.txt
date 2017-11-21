@@ -30,6 +30,23 @@
 1、用在radio上，一定要加上value属性
 <input type="radio" formControlName="gender" value="女">女
 <input type="radio" formControlName="gender" value="男">男
+2、
+//////////===>正确的增加：
+addRules() {
+	const rules = this.myForm.get('rules') as FormArray;
+	rules.push(this.fb.group({_rule: [''], _suggest: ['']}));
+}
+//////////===>错误的删除：
+delRules(i: number) {
+	const rules = this.myForm.get('rules') as FormArray;
+	rules.controls.splice(i, 1);
+}
+//////////===>正确的删除：
+delRules(i: number) {
+	const rules = this.myForm.get('rules') as FormArray;
+	rules.removeAt(i);
+}
+
 
 【模块架构】
 >1.根模块负责全局的路由。
