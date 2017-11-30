@@ -134,3 +134,8 @@ rAF(update);
 
 //默认新窗口打开链接
 <base target="_blank" />
+
+
+
+------------兼容性----------
+火狐里面： button嵌套input[file]不能上传文件，改成a>input

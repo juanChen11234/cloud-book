@@ -377,3 +377,14 @@ document.head.appendChild(script);
 //document.documentElement.offsetWidth/Height 度量Html元素的尺寸
 
 //事件中的坐标：pageX/Y相对于html元素CSS像素度量, clientX/Y相对于viewportCSS像素度量, screenX/Y对于屏幕设备像素度量 
+
+
+
+// 2017 11 28 【web打印去掉页眉页脚？】 
+
+/*
+<!doctype html moznomarginboxes mozdisallowselectionprint>
+@media print {
+    @page { margin: 0; }
+}
+*/
