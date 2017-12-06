@@ -1,7 +1,7 @@
 
 
 【关于设置文本】
-1：问题是直接用setData或则insertHtml都会标签不见了
+1：直接用setData或则insertHtml都会标签不见了
 =====》》正确的姿势》》======
 var element = ck.dom.element.createFromHtml( '<h1>你好</h1>' );
 ck.instances.editor01.insertElement( element );
