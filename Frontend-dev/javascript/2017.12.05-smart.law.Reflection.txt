@@ -1,0 +1,1 @@
+【1】、关于表单：必填项只在_check(){}里面表示，其他不管是_initData() 还是 _getPostData() 里面都用 || '' 和cutEmptyItem来解决。
