@@ -1,0 +1,108 @@
+/* google的什么prevent default问题 */
+* {
+    touch-action: none;
+}
+
+
+/* 手机上点击图片会有个遮罩 */
+body{
+    -webkit-tap-highlight-color:transparent;
+}
+
+
+
+/* 
+	文件上传input 的美化 
+	<a href="javascript:void(0);" class="xx">
+		<span class="btn_dark">更改图片</span>
+		<input type="file" value="更改图片">
+	</a>
+*/
+a.xx  {
+    position: relative;
+    width: 100px;
+    height: 25px;
+    display: block;
+}
+a.xx>span {
+    position: absolute;
+    z-index: 0;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    cursor: pointer;
+    line-height: 25px;
+}
+a.xx>[type="file"] {
+    opacity: 0;
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+
+/*
+	关于媒体查询，用max-width要从宽到窄。max-width,表示0-376px
+*/
+@media screen and (max-width:376px) {
+    
+}
+@media screen and (max-width:321px) {
+    
+}
+
+
+/*swiper的fade效果*/
+.swiper-container-fade .swiper-slide{
+    z-index:-1;
+    opacity: 0!important;
+}
+.swiper-container-fade .swiper-slide.swiper-slide-active{
+    z-index:10;
+    opacity: 1!important;
+}
+
+
+
+/*改变placeholder*/
+input::-webkit-input-placeholder{ 
+	font-size:10px;
+	transform: scale(0.85);
+	-ms-transform: scale(0.85);
+	-webkit-transform: scale(0.85);
+	margin-left:-8%;
+} 
+input:-moz-placeholder{ 
+	font-size:10px;
+	transform: scale(0.85);
+	-ms-transform: scale(0.85);
+	-webkit-transform: scale(0.85);
+	margin-left:-8%;
+} 
+input::-moz-placeholder{ 
+	font-size:10px;
+	transform: scale(0.85);
+	-ms-transform: scale(0.85);
+	-webkit-transform: scale(0.85);
+	margin-left:-8%;
+} 
+
+
+/*IE 的适配 (直接写在html中)
+<!--[if IE 6]>
+	<style>#export_p_stories_list .custom_btn{display:inline;}</style>
+<![endif]-->
+*/
+
+
+/* 文本超出部分用省略号表示*/
+.txt_{
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}

@@ -1,0 +1,12 @@
+¹Ø¼ü£º
+
+
+<VirtualHost *:80>
+	 DocumentRoot "E:/00chenjuan"
+	ServerName localhost
+	<Directory "E:/00chenjuan">  
+	    Options Indexes FollowSymLinks Includes ExecCGI  
+	    AllowOverride All  
+	    Require all granted  
+	</Directory>  
+</VirtualHost>

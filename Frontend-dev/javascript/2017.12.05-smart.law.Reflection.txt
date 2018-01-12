@@ -1,4 +1,0 @@
-【1】、关于表单：必填项只在_check(){}里面表示，其他不管是_initData() 还是 _getPostData() 里面都用 || '' 和cutEmptyItem来解决。
-
-【2】、时刻记住判断后台的返回会不会为null。比如搜索结果在txt.data里面，如果没搜到，后台返回值里面没有data这个属性，或者data:null之类的。
-	null和undefined点上什么都会报错。
