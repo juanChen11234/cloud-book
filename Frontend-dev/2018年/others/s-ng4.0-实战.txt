@@ -68,3 +68,9 @@ delRules(i: number) {
 new FileUploader({
 	itemAlias: 'file',// 这个名字不是随便写的，和后台配置要一致。
 })
+
+
+【父组件里更改子组件的样式】
+:host ::ng-deep 组件名 {
+	//....
+}
