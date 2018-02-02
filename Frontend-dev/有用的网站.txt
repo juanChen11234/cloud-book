@@ -1,5 +1,7 @@
 
 
-css3-icons £º  http://www.uiplayground.in/css3-icons/
+css3-icons   http://www.uiplayground.in/css3-icons/
 
-²Ã¼ôclippy£º   http://bennettfeely.com/clippy/
+clippy   http://bennettfeely.com/clippy/
+
+angular-2  https://www.concretepage.com/angular-2/
