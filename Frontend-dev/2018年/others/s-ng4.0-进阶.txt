@@ -1,0 +1,44 @@
+// 更改子组件的样式
+:host ::ng-deep  table-component{
+
+}
+
+// ng-template
+// ngIf:
+<ng-template [ngIf]="getSetp02CheckedNum() > 0">
+    // html
+</ng-template>
+// ngFor:
+<ng-template ngFor let-item let-i="index" [ngForOf]="step_02_array">
+    // html
+</ng-template>
+
+
+// 路由参数
+1、传递方式：/stock?id=2&name='haha'
+配置：<a [routerLink]="['/stock']" [queryParams]="{id:1}">
+获取参数：ActivitedRoute.queryParams[id];
+
+2、传递方式：<a [routerLink]="['/stock',1]"> 或者 stock/1 
+配置：{path:"stock/:id"} 
+获取参数：ActivitedRoute.params[id];
+
+3、配置：{path:"",data:[{isOk:true,xx:'yy'},{...}]}
+获取：ActivitedRoute.data[0]['xx']
+注意：data一定是一个数组。
+
+
+
+// 子组件向外传递事件：
+=> 子组件：
+import {EventEmitter} from '@angular/core';
+@Output() onPageChange: EventEmitter<number> = new EventEmitter();
+
+click() {
+	this.onPageChange.emit(123);
+}
+
+=> 父组件:
+<child (onPageChange)="doSomething($event)"></child>
+
+// 用[(ngModel)] 一定需要import {FormsModule} from '@angular/forms';

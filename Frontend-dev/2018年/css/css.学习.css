@@ -1,10 +1,10 @@
-/* googleµÄÊ²Ã´prevent defaultÎÊÌâ */
+/* googleï¿½ï¿½Ê²Ã´prevent defaultï¿½ï¿½ï¿½ï¿½ */
 * {
     touch-action: none;
 }
 
 
-/* ÊÖ»úÉÏµã»÷Í¼Æ¬»áÓĞ¸öÕÚÕÖ */
+/* ï¿½Ö»ï¿½ï¿½Ïµï¿½ï¿½Í¼Æ¬ï¿½ï¿½ï¿½Ğ¸ï¿½ï¿½ï¿½ï¿½ï¿½ */
 body{
     -webkit-tap-highlight-color:transparent;
 }
@@ -12,10 +12,10 @@ body{
 
 
 /* 
-	ÎÄ¼şÉÏ´«input µÄÃÀ»¯ 
+	ï¿½Ä¼ï¿½ï¿½Ï´ï¿½input ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	<a href="javascript:void(0);" class="xx">
-		<span class="btn_dark">¸ü¸ÄÍ¼Æ¬</span>
-		<input type="file" value="¸ü¸ÄÍ¼Æ¬">
+		<span class="btn_dark">ï¿½ï¿½ï¿½ï¿½Í¼Æ¬</span>
+		<input type="file" value="ï¿½ï¿½ï¿½ï¿½Í¼Æ¬">
 	</a>
 */
 a.xx  {
@@ -47,7 +47,7 @@ a.xx>[type="file"] {
 
 
 /*
-	¹ØÓÚÃ½Ìå²éÑ¯£¬ÓÃmax-widthÒª´Ó¿íµ½Õ­¡£max-width,±íÊ¾0-376px
+	ï¿½ï¿½ï¿½ï¿½Ã½ï¿½ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½max-widthÒªï¿½Ó¿ï¿½Õ­ï¿½ï¿½max-width,ï¿½ï¿½Ê¾0-376px
 */
 @media screen and (max-width:376px) {
     
@@ -57,7 +57,7 @@ a.xx>[type="file"] {
 }
 
 
-/*swiperµÄfadeĞ§¹û*/
+/*swiperï¿½ï¿½fadeĞ§ï¿½ï¿½*/
 .swiper-container-fade .swiper-slide{
     z-index:-1;
     opacity: 0!important;
@@ -68,39 +68,54 @@ a.xx>[type="file"] {
 }
 
 
+ /*æ»šåŠ¨æ¡æ ·å¼*/
+::-webkit-scrollbar {
+    width: 15px!important;
+    height: 15px!important;
+    -webkit-appearance: none
+}
+::-webkit-scrollbar-thumb {
+    height: 5px;
+    border: 1px solid transparent;
+    border-top: none;
+    border-bottom: none;
+    -webkit-border-radius: 8px;
+    background-color: rgba(0, 0, 0, .2);
+    background-clip: padding-box
+}
 
-/*¸Ä±äplaceholder*/
-input::-webkit-input-placeholder{ 
-	font-size:10px;
-	transform: scale(0.85);
-	-ms-transform: scale(0.85);
-	-webkit-transform: scale(0.85);
-	margin-left:-8%;
-} 
-input:-moz-placeholder{ 
-	font-size:10px;
-	transform: scale(0.85);
-	-ms-transform: scale(0.85);
-	-webkit-transform: scale(0.85);
-	margin-left:-8%;
-} 
-input::-moz-placeholder{ 
-	font-size:10px;
-	transform: scale(0.85);
-	-ms-transform: scale(0.85);
-	-webkit-transform: scale(0.85);
-	margin-left:-8%;
-} 
+/*æ”¹å˜placeholder*/
+input::-webkit-input-placeholder{
+    font-family: MicrosoftYaHei;
+    font-size: 12px;
+    color: #BBBBBB;
+    letter-spacing: 0.74px;
+    font-weight: normal;
+}
+input:-moz-placeholder{
+    font-family: MicrosoftYaHei;
+    font-size: 12px;
+    color: #BBBBBB;
+    letter-spacing: 0.74px;
+    font-weight: normal;
+}
+input::-moz-placeholder{
+    font-family: MicrosoftYaHei;
+    font-size: 12px;
+    color: #BBBBBB;
+    letter-spacing: 0.74px;
+    font-weight: normal;
+}
 
 
-/*IE µÄÊÊÅä (Ö±½ÓĞ´ÔÚhtmlÖĞ)
+/*IE ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (Ö±ï¿½ï¿½Ğ´ï¿½ï¿½htmlï¿½ï¿½)
 <!--[if IE 6]>
 	<style>#export_p_stories_list .custom_btn{display:inline;}</style>
 <![endif]-->
 */
 
 
-/* ÎÄ±¾³¬³ö²¿·ÖÓÃÊ¡ÂÔºÅ±íÊ¾*/
+/* ï¿½Ä±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¡ï¿½ÔºÅ±ï¿½Ê¾*/
 .txt_{
 	text-overflow: ellipsis;
 	overflow: hidden;
