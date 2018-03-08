@@ -1,3 +1,5 @@
+
+
 【注意】
 1、用[(ngModel)]命令需要跟模块中import:{FormsModule}模块
 
@@ -26,11 +28,13 @@
 但是用属性[routerLink]='./b'可以
 
 
-【关于响应式表单】
-1、用在radio上，一定要加上value属性
+【关于响应式表单：单选】
+用在radio上，一定要加上value属性
 <input type="radio" formControlName="gender" value="女">女
 <input type="radio" formControlName="gender" value="男">男
-2、
+
+
+【关于响应式表单：array的增加删除】
 //////////===>正确的增加：
 addRules() {
 	const rules = this.myForm.get('rules') as FormArray;
@@ -59,11 +63,11 @@ delRules(i: number) {
 成惰性加载的模块，以提升页面引导的速度减少性能浪费。
 
 6、共享的服务只需要在共享的模块providers，不需要在共享的模块exports【2017-11-16】。
+7、browser那两个，在根目录import
 
 
 
-
-【关于第三方插件】
+【关于第三方插件:ng2-file-upload】
 1、文件上传插件，ng2-file-upload。
 new FileUploader({
 	itemAlias: 'file',// 这个名字不是随便写的，和后台配置要一致。
@@ -74,3 +78,26 @@ new FileUploader({
 :host ::ng-deep 组件名 {
 	//....
 }
+
+【把整个项目的import改成绝对路径：】
+=>>>>.angular-cli.json,"environments": 后面加上
++"stylePreprocessorOptions": {
++        "includePaths": [
++          ""
++        ]
++}
+
+=>>>> src/tsconfig.app.json 
+"extends": "../tsconfig.json",
+   "compilerOptions": {
+     "outDir": "../out-tsc/app",
+-    "baseUrl": "./",
++    "baseUrl": ".",
+     "module": "es2015",
+     "types": []
+   }
+
+
+
+【font awesome 用scss的方法引入项目】
+要修改一个地方，_variables.scss->font-path：改成绝对路径

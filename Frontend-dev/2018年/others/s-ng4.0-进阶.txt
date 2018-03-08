@@ -41,4 +41,31 @@ click() {
 => 父组件:
 <child (onPageChange)="doSomething($event)"></child>
 
+
+
 // 用[(ngModel)] 一定需要import {FormsModule} from '@angular/forms';
+
+
+
+// http 两种方法
+// 1 => promise
+import {URLSearchParams, Response} from '@angular/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import 'rxjs/add/operator/toPromise';
+
+async fn01(): Promise<any>{
+	return await this.http.post(param).toPromise();;
+}
+// 使用
+fn01().then( txt => {
+
+});
+
+// 2 => OB
+import { Observable } from 'rxjs/Observable';
+FN02(param?): Observable<any> {
+	return this.http.get(param);
+}
+fn02().subscribe( txt => {
+
+});
