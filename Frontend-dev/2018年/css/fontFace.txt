@@ -1,0 +1,27 @@
+
+
+IE9+：                 .ttf       .woff  .eot
+
+Firefox3.5+：          .ttf .otf  .woff
+
+Chrome4+：             .ttf .otf  .woff        .svg
+
+Safari3+：             .ttf .otf  .woff        .svg
+
+Opera10+：             .ttf .otf  .woff        .svg
+
+iOS Mobile Safari4.2： .ttf .otf               .svg
+
+
+@font-face {
+    font-family: 'YourWebFontName';
+    src: url('YourWebFontName.eot'); /* IE9 Compat Modes */
+    src: url('YourWebFontName.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('YourWebFontName.woff') format('woff'), /* Modern Browsers */
+        url('YourWebFontName.ttf')  format('truetype'), /* Safari, Android, iOS */
+        url('YourWebFontName.svg#YourWebFontName') format('svg'); /* Legacy iOS */
+}
+
+.font-mine{
+	font-family: 'YourWebFontName'
+}
