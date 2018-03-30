@@ -1,0 +1,37 @@
+
+CanActivate: 处理导航到某路由的情况。
+
+CanDeactivate: 处理从当前路由离开的情况。
+
+Resolve：在路由激活之前获取路由数据。
+
+
+permission.guard.ts
+/* =================================
+import {CanActivate} from "@angular/router";
+export class PermissionGuard implements  CanActivate{
+	
+	CanActivate(): boolean{
+
+		return true;
+	}
+}
+=====================================*/
+
+
+module.ts
+/*=====================================
+providers: [
+	PermissionGuard // 实例化
+]
+======================================*/
+
+
+router.ts
+/* =====================================
+{
+	path: 'aa',
+	component: aa,
+	canActivate: [PermissionGuard]
+}
+=========================================*/
